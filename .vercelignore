@@ -1,0 +1,38 @@
+# Old API routes - consolidated into api/[...path].js
+api/blog.js
+api/categories.js
+api/chat-messages.js
+api/chat-rooms.js
+api/companies.js
+api/company-employees.js
+api/company-jobs.js
+api/db-client.js
+api/db-wake.js
+api/emergency.js
+api/featured-posts.js
+api/followers.js
+api/jobs.js
+api/messages.js
+api/notifications.js
+api/offers.js
+api/posts.js
+api/reports.js
+api/reviews.js
+api/tracking.js
+api/ustagram-comments.js
+api/ustagram-followers.js
+api/ustagram-likes.js
+api/ustagram-posts.js
+api/ustagram-saves.js
+api/ustas.js
+
+# Build artifacts
+dist
+node_modules
+.vercel
+
+# Cache and temp
+*.tmp
+*.temp
+.cache
+.vite-source-tags.js
