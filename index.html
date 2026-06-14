@@ -1,44 +1,209 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <meta name="description" content="Ustabaşı - Türkiye'nin en güvenilir ve en hızlı usta eşleştirme platformu. Elektrik, su tesisatı, boya, temizlik ve daha fazlası için en yakın ustayı bulun." />
-    <meta name="keywords" content="usta, tesisat, elektrik, boya, temizlik, nakliyat, klima, mobilya, tamir, hizmet" />
-    <meta property="og:title" content="Ustabaşı - Usta İşi, Güvenilir Hizmet" />
-    <meta property="og:description" content="Bulunduğun bölgedeki en iyi ustalara dakikalar içinde ulaş." />
-    <meta property="og:type" content="website" />
-    <title>Ustabaşı - Usta İşi, Güvenilir Hizmet</title>
-    <script data-arena-recording="true">(function(){
-"use strict";
-var SK="__arena_rec",RRWEB_CDN="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js";
-var MAX_RECORDING_MS=600000,MAX_RRWEB_EVENTS=30000,MAX_INTERACTIONS=5000,MAX_CURSOR_POINTS=10000,recStopped=false;
-var stored=null;try{var raw=sessionStorage.getItem(SK);if(raw)stored=JSON.parse(raw);}catch(ex){}
-var meta=stored?stored.m||null:null,rrwebEvents=stored?stored.r||[]:[],rrwebStarted=false,startTime=stored?stored.st||Date.now():Date.now();
-var interactions=stored?stored.i||[]:[],cursorPath=stored?stored.c||[]:[],lastCursorSample=0,lastScrollSample=0;
-var pageHeight=document.documentElement.scrollHeight;
-var viewport={width:window.innerWidth,height:window.innerHeight};
-function isCapped(){if(recStopped)return true;if(Date.now()-startTime>=MAX_RECORDING_MS){recStopped=true;return true;}return false;}
-function persist(){try{var d=JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime});sessionStorage.setItem(SK,d);}catch(ex){rrwebEvents=rrwebEvents.slice(Math.floor(rrwebEvents.length/2));try{sessionStorage.setItem(SK,JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime}));}catch(ex2){}}}
-setInterval(persist,5000);
-window.addEventListener("resize",function(){viewport={width:window.innerWidth,height:window.innerHeight};pageHeight=document.documentElement.scrollHeight;});
-document.addEventListener("click",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var el=e.target;var tag=el.tagName?el.tagName.toLowerCase():"";var text=(el.textContent||"").trim().substring(0,80);var classes=el.className&&typeof el.className==="string"?el.className.substring(0,120):"";interactions.push({type:"click",t:Date.now()-startTime,x:Math.round(e.clientX),y:Math.round(e.clientY),element:{tag:tag,text:text,classes:classes}});},true);
-window.addEventListener("scroll",function(){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var now=Date.now();if(now-lastScrollSample<200)return;lastScrollSample=now;var scrollY=Math.round(window.scrollY||window.pageYOffset||0);var depthPct=pageHeight>viewport.height?Math.min(100,Math.round(((scrollY+viewport.height)/pageHeight)*100)):100;interactions.push({type:"scroll",t:now-startTime,y:scrollY,depth_pct:depthPct});},{passive:true});
-document.addEventListener("mousemove",function(e){if(isCapped()||cursorPath.length>=MAX_CURSOR_POINTS)return;var now=Date.now();if(now-lastCursorSample<250)return;lastCursorSample=now;cursorPath.push([Math.round(e.clientX),Math.round(e.clientY),now-startTime]);},{passive:true});
-document.addEventListener("keydown",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;interactions.push({type:"keydown",t:Date.now()-startTime,key:e.key});},true);
-function buildAnalytics(){if(!meta)return null;var ph=document.documentElement.scrollHeight;var maxScroll=0,clickElements={},firstClick=null,firstScroll=null,totalDistance=0;for(var i=0;i<interactions.length;i++){var ev=interactions[i];if(ev.type==="scroll"){if(ev.depth_pct>maxScroll)maxScroll=ev.depth_pct;if(!firstScroll)firstScroll=ev.t;}if(ev.type==="click"){if(!firstClick)firstClick=ev.t;var key=ev.element.tag+":"+ev.element.text.substring(0,30);clickElements[key]=true;}}for(var j=1;j<cursorPath.length;j++){var dx=cursorPath[j][0]-cursorPath[j-1][0];var dy=cursorPath[j][1]-cursorPath[j-1][1];totalDistance+=Math.sqrt(dx*dx+dy*dy);}var duration=Date.now()-startTime;var clickHeatmap=[];for(var k=0;k<interactions.length;k++){if(interactions[k].type==="click")clickHeatmap.push([interactions[k].x,interactions[k].y]);}return{generation_id:meta.generationId,tournament_id:meta.tournamentId,started_at:new Date(startTime).toISOString(),ended_at:new Date().toISOString(),duration_ms:duration,viewport:viewport,page_height:ph,interactions:interactions,cursor_path:cursorPath,click_heatmap:clickHeatmap,summary:{total_clicks:clickHeatmap.length,total_scrolls:interactions.filter(function(e){return e.type==="scroll";}).length,max_scroll_depth_pct:maxScroll,unique_elements_clicked:Object.keys(clickElements).length,time_to_first_click_ms:firstClick,time_to_first_scroll_ms:firstScroll,cursor_distance_px:Math.round(totalDistance),active_time_ms:duration}};}
-function loadRrweb(){if(rrwebStarted)return;rrwebStarted=true;var s=document.createElement("script");s.src=RRWEB_CDN;s.onload=function(){var rec=(window.rrweb&&window.rrweb.record)||window.rrwebRecord;if(!rec)return;rec({emit:function(event){if(rrwebEvents.length>=MAX_RRWEB_EVENTS||isCapped())return;rrwebEvents.push(event);}});};s.onerror=function(){};document.head.appendChild(s);}
-window.addEventListener("message",function(e){if(!e.data||typeof e.data.type!=="string")return;if(e.data.type==="arena:init"){if(!meta)startTime=Date.now();meta={generationId:e.data.generationId||e.data.modelId,tournamentId:e.data.tournamentId};persist();loadRrweb();if(e.source)e.source.postMessage({type:"arena:init-ack",generationId:meta.generationId},"*");}if(e.data.type==="arena:flush"){var resp={type:"arena:recording-data",generationId:meta?meta.generationId:null,rrwebEvents:rrwebEvents,analytics:buildAnalytics()};try{sessionStorage.removeItem(SK);}catch(ex){}if(e.source)e.source.postMessage(resp,"*");}});
-loadRrweb();
-})();</script>
-  <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"kimi-k2.6",tournamentId:"6a49bd90-9c5d-415d-bc90-9bc61d36512c"};var payload={tournamentId:"6a49bd90-9c5d-415d-bc90-9bc61d36512c",modelId:"kimi-k2.6"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustabaşı - Türkiye'nin #1 Usta Platformu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .text-ustabasi { color: #f39c12; }
+        .bg-ustabasi { background-color: #f39c12; }
+    </style>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer">
+                <i class="fa-solid fa-helmet-safety text-3xl text-ustabasi"></i>
+                <span class="text-2xl font-extrabold tracking-tight text-slate-900">USTABAŞI</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 font-medium text-slate-600">
+                <a href="#" class="hover:text-ustabasi transition">Ustalar</a>
+                <a href="#" class="hover:text-ustabasi transition">Firmalar</a>
+                <a href="#" class="hover:text-ustabasi transition">Harita</a>
+                <a href="#" class="text-red-500 font-bold hover:text-red-600 transition"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Acil Durum</a>
+                <a href="#" class="hover:text-ustabasi transition">Sohbet</a>
+                <a href="#" class="hover:text-ustabasi transition">Ustagram</a>
+                <a href="#" class="hover:text-ustabasi transition">Blog</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button class="text-slate-600 font-medium hover:text-slate-900">Giriş Yap</button>
+                <button class="bg-ustabasi text-white px-5 py-2 rounded-full font-bold hover:bg-yellow-500 transition shadow-lg">Kayıt Ol</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-bg text-white py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="bg-white/10 px-4 py-1 rounded-full text-sm font-semibold tracking-wider text-yellow-400 uppercase mb-6 inline-block">Türkiye'nin #1 Usta Platformu</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Usta İşi, <span class="text-ustabasi">Güvenilir</span> Hizmet</h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-10">Bulunduğun bölgedeki en iyi ustalara dakikalar içinde ulaş. Binlerce güvenilir usta seni bekliyor.</p>
+            
+            <div class="bg-white p-2 rounded-full flex flex-col md:flex-row gap-2 max-w-3xl mx-auto shadow-2xl">
+                <div class="flex-1 flex items-center px-4 text-slate-500 border-r border-gray-200">
+                    <i class="fa-solid fa-magnifying-glass mr-3"></i>
+                    <input type="text" placeholder="Hangi hizmete ihtiyacın var? (Örn: Boyacı)" class="w-full bg-transparent outline-none text-slate-800">
+                </div>
+                <div class="flex-1 flex items-center px-4 text-slate-500">
+                    <i class="fa-solid fa-location-dot mr-3 text-red-500"></i>
+                    <input type="text" placeholder="Konum (İl/İlçe)" class="w-full bg-transparent outline-none text-slate-800">
+                </div>
+                <button class="bg-ustabasi text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition w-full md:w-auto">Usta Bul</button>
+            </div>
+
+            <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 text-center border-t border-white/10 pt-10">
+                <div>
+                    <h3 class="text-3xl font-bold text-ustabasi" id="stat-ustalar">12.500+</h3>
+                    <p class="text-slate-400 text-sm mt-1">Aktif Usta</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-ustabasi" id="stat-isler">85.000+</h3>
+                    <p class="text-slate-400 text-sm mt-1">Tamamlanan İş</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-ustabasi" id="stat-puan">4.8</h3>
+                    <p class="text-slate-400 text-sm mt-1">Ortalama Puan</p>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-ustabasi" id="stat-sehir">81</h3>
+                    <p class="text-slate-400 text-sm mt-1">Hizmet Verilen Şehir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Nasıl Çalışır?</h2>
+            <p class="text-slate-500 mb-12">5 basit adımda işinizi güvenle tamamlayın.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-ustabasi mb-4 shadow-sm"><i class="fa-solid fa-list-check"></i></div>
+                    <h4 class="font-bold text-slate-800">Hizmet Seç</h4>
+                    <p class="text-xs text-slate-500 mt-2">İhtiyacın olan kategoriyi seç.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-ustabasi mb-4 shadow-sm"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h4 class="font-bold text-slate-800">Konum Belirle</h4>
+                    <p class="text-xs text-slate-500 mt-2">Bulunduğun konumu gir.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-ustabasi mb-4 shadow-sm"><i class="fa-solid fa-bell-concierge"></i></div>
+                    <h4 class="font-bold text-slate-800">Teklif Al</h4>
+                    <p class="text-xs text-slate-500 mt-2">En iyi ustalar teklif versin.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-ustabasi mb-4 shadow-sm"><i class="fa-solid fa-user-check"></i></div>
+                    <h4 class="font-bold text-slate-800">Ustayı Seç</h4>
+                    <p class="text-xs text-slate-500 mt-2">Puan ve yorumlara göre karar ver.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-2xl text-ustabasi mb-4 shadow-sm"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h4 class="font-bold text-slate-800">Hizmeti Tamamla</h4>
+                    <p class="text-xs text-slate-500 mt-2">Güvenle işini bitir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-2">Kategoriler</h2>
+                    <p class="text-slate-500">Aradığın hizmeti seç, en yakın ustalara anında ulaş.</p>
+                </div>
+                <button class="text-ustabasi font-semibold hover:underline hidden md:block">Tümünü Gör <i class="fa-solid fa-arrow-right ml-1"></i></button>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" id="category-container">
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-plug text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Elektrik</h4>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-faucet-drip text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Su Tesisatı</h4>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-paint-roller text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Boya</h4>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-broom text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Temizlik</h4>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-truck-fast text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Nakliyat</h4>
+                </div>
+                <div class="bg-white p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer border border-slate-100 hover:border-ustabasi group">
+                    <i class="fa-solid fa-snowflake text-3xl text-slate-400 group-hover:text-ustabasi transition mb-3"></i>
+                    <h4 class="font-semibold text-slate-800">Klima</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-center px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Hemen İşine Başla</h2>
+            <p class="text-slate-400 mb-10 text-lg">Ücretsiz üye ol, iş talebini oluştur ve dakikalar içinde teklifler almaya başla.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-ustabasi text-white px-8 py-4 rounded-full font-bold hover:bg-yellow-500 transition text-lg shadow-lg">İş Talebi Oluştur</button>
+                <button class="bg-transparent border border-slate-600 text-white px-8 py-4 rounded-full font-bold hover:bg-slate-800 transition text-lg">Abonelikleri İncele</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-16 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-helmet-safety text-2xl text-ustabasi"></i>
+                    <span class="text-xl font-extrabold tracking-tight text-white">USTABAŞI</span>
+                </div>
+                <p class="text-sm leading-relaxed max-w-sm mb-6">Türkiye'nin en güvenilir ve en hızlı usta eşleştirme platformu. Dakikalar içinde en yakın ustayı bulun.</p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Hızlı Linkler</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-ustabasi transition">Ustalar</a></li>
+                    <li><a href="#" class="hover:text-ustabasi transition">İş Talebi Oluştur</a></li>
+                    <li><a href="#" class="hover:text-ustabasi transition">Ustagram</a></li>
+                    <li><a href="#" class="hover:text-ustabasi transition">Blog</a></li>
+                    <li><a href="#" class="hover:text-ustabasi transition">Abonelikler</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">İletişim</h4>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-ustabasi"></i> 0850 123 45 67</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-ustabasi"></i> info@ustabasii.com.tr</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-ustabasi"></i> İstanbul, Türkiye</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <p>© 2026 Ustabaşı. Tüm hakları saklıdır.</p>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition">Gizlilik Politikası</a>
+                <a href="#" class="hover:text-white transition">Kullanım Koşulları</a>
+                <a href="#" class="hover:text-white transition">KVKK / Aydınlatma Metni</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
