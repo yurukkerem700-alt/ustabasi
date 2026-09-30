@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/cover.png" alt="USTABAŞI" width="100%"></p>
+
 # 🔨 USTABAŞI - Türkiye'nin En Güvenilir Usta Eşleştirme Platformu
 
 [![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?logo=vite)](https://vitejs.dev)
@@ -196,3 +198,7 @@ ustabasi/
 ## 📄 Lisans
 
 MIT License - © 2025 Ustabaşı. Tüm hakları saklıdır.
+
+---
+
+© 2026 YÖRÜKHAN STÜDYO — Tüm hakları saklıdır. Bu projenin kodu, tasarımı, oyun fikri ve görselleri izinsiz kopyalanamaz, çoğaltılamaz veya ticari amaçla kullanılamaz.
