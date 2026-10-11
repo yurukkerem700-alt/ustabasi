@@ -1,6 +1,8 @@
 <p align="center"><img src=".github/cover.png" alt="USTABAŞI" width="100%"></p>
 
-# 🔨 USTABAŞI - Türkiye'nin En Güvenilir Usta Eşleştirme Platformu
+# 🔨 USTABAŞI - Türkiye'nin Yeni Nesil Usta Platformu
+
+> **YÖRÜKHAN TECH** ürünü. Tasarım sistemi: `src/index.css` (`@theme` ile marka paleti).
 
 [![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?logo=vite)](https://vitejs.dev)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)

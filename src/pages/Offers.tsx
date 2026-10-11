@@ -117,7 +117,7 @@ export default function Offers() {
                           <div>
                             <h4 className="font-semibold">{offer.ustas?.name}</h4>
                             <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400 mt-1">
-                              <span className="flex items-center gap-1"><Star size={14} className="text-amber-500" /> {offer.ustas?.rating}</span>
+                              <span className="flex items-center gap-1"><Star size={14} className="text-yellow-400" /> {offer.ustas?.rating}</span>
                               <span className="flex items-center gap-1"><TrendingUp size={14} /> {offer.ustas?.completed_jobs} iş</span>
                             </div>
                           </div>

@@ -9,10 +9,10 @@ import {
 } from 'lucide-react';
 
 const stats = [
-  { label: 'Aktif Usta', value: '12.500+', icon: Users },
-  { label: 'Tamamlanan İş', value: '85.000+', icon: CheckCircle },
-  { label: 'Ortalama Puan', value: '4.8', icon: Star },
-  { label: 'Hizmet Verilen Şehir', value: '81', icon: MapPin },
+  { label: 'Hizmet Kategorisi', value: '15+', icon: Users },
+  { label: 'İş Talebi', value: 'Ücretsiz', icon: CheckCircle },
+  { label: 'Puan ve Yorum', value: 'Şeffaf', icon: Star },
+  { label: 'Acil Durum', value: '7/24', icon: MapPin },
 ];
 
 const steps = [
@@ -69,14 +69,14 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-sm font-medium mb-6">
                 <Award size={14} />
-                Türkiye'nin #1 Usta Platformu
+                Yeni nesil usta platformu
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
                 Usta İşi,{' '}
                 <span className="gradient-text">Güvenilir Hizmet</span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
-                Bulunduğun bölgedeki en iyi ustalara dakikalar içinde ulaş. Binlerce güvenilir usta seni bekliyor.
+                Bulunduğun bölgedeki en iyi ustalara dakikalar içinde ulaş. Ücretsiz iş talebi oluştur, puan ve yorumlara göre en uygun ustayı seç.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -97,11 +97,11 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative hidden lg:block">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/10">
                 <img
-                  src="/site_kapak.png"
+                  src="/images/hero-brand.webp"
                   alt="Ustabaşı Hero"
                   className="w-full h-[500px] object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/hero.jpg';
+                    (e.target as HTMLImageElement).src = '/logo.png';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -254,7 +254,7 @@ export default function Home() {
                     />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold truncate">{usta.name}</h3>
-                      <div className="flex items-center gap-1 text-amber-500 text-sm">
+                      <div className="flex items-center gap-1 text-yellow-400 text-sm">
                         <Star size={14} fill="currentColor" />
                         <span className="font-medium">{usta.rating}</span>
                         <span className="text-gray-400">({usta.completed_jobs} iş)</span>

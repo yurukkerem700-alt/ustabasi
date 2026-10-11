@@ -35,7 +35,7 @@ export default function UstaProfileMini({ usta, showFollow = true, onFollow, isF
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-500">
           <span className="flex items-center gap-0.5">
-            <Star size={10} className="text-amber-500" fill="currentColor" /> {usta.rating}
+            <Star size={10} className="text-yellow-400" fill="currentColor" /> {usta.rating}
           </span>
           <span className="flex items-center gap-0.5">
             <MapPin size={10} /> {usta.location}

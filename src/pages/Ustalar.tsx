@@ -137,7 +137,7 @@ export default function Ustalar() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-semibold truncate">{usta.name}</h3>
-                        <div className="flex items-center gap-1 text-amber-500 text-sm">
+                        <div className="flex items-center gap-1 text-yellow-400 text-sm">
                           <Star size={14} fill="currentColor" />
                           <span className="font-medium">{usta.rating}</span>
                           <span className="text-gray-400">({usta.completed_jobs} iş)</span>

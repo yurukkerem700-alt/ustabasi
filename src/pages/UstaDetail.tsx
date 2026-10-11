@@ -82,7 +82,7 @@ export default function UstaDetail() {
             <div className="flex-1 text-center sm:text-left">
               <h1 className="text-2xl sm:text-3xl font-bold mb-2">{usta.name}</h1>
               <div className="flex items-center justify-center sm:justify-start gap-4 mb-4">
-                <div className="flex items-center gap-1 text-amber-500">
+                <div className="flex items-center gap-1 text-yellow-400">
                   <Star size={18} fill="currentColor" />
                   <span className="font-semibold">{usta.rating}</span>
                 </div>

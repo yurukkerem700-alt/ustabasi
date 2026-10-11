@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Wrench, Phone, Mail, MapPin, Instagram, Twitter, Facebook, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -14,13 +14,6 @@ export default function Footer() {
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               Türkiye'nin en güvenilir ve en hızlı usta eşleştirme platformu. Dakikalar içinde en yakın ustayı bulun.
             </p>
-            <div className="flex gap-3">
-              {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-amber-100 dark:hover:bg-amber-900/20 hover:text-amber-600 transition-colors">
-                  <Icon size={14} />
-                </a>
-              ))}
-            </div>
           </div>
 
           <div>
@@ -46,15 +39,15 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">İletişim</h4>
             <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-              <li className="flex items-center gap-2"><Phone size={14} className="text-amber-600" /> 0850 123 45 67</li>
-              <li className="flex items-center gap-2"><Mail size={14} className="text-amber-600" /> info@ustabasi.com</li>
+              <li className="flex items-center gap-2"><Phone size={14} className="text-amber-600" /> <Link to="/acil-durum" className="hover:text-amber-600">Acil durum çağrısı</Link></li>
+              <li className="flex items-center gap-2"><Mail size={14} className="text-amber-600" /> info@ustabasii.com.tr</li>
               <li className="flex items-center gap-2"><MapPin size={14} className="text-amber-600" /> İstanbul, Türkiye</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-500">
-          <p>© 2025 Ustabaşı. Tüm hakları saklıdır.</p>
+          <p>© 2026 Ustabaşı · Bir YÖRÜKHAN TECH ürünüdür. Tüm hakları saklıdır.</p>
           <div className="flex gap-6">
             <Link to="/kvkk" className="hover:text-amber-600 transition-colors">Gizlilik Politikası</Link>
             <Link to="/kvkk" className="hover:text-amber-600 transition-colors">Kullanım Koşulları</Link>

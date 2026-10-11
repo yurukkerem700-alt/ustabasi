@@ -99,7 +99,7 @@ export default function Tracking() {
                 <div className="flex-1">
                   <p className="font-semibold text-sm">{t.ustas?.name}</p>
                   <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <span className="flex items-center gap-0.5"><Star size={10} className="text-amber-500" fill="currentColor" /> {t.ustas?.rating}</span>
+                    <span className="flex items-center gap-0.5"><Star size={10} className="text-yellow-400" fill="currentColor" /> {t.ustas?.rating}</span>
                     <span className="flex items-center gap-0.5"><Phone size={10} /> {t.ustas?.phone || '0850 123 45 67'}</span>
                   </div>
                 </div>

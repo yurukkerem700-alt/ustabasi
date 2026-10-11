@@ -117,7 +117,7 @@ export default function Companies() {
                           <span className={`px-2 py-0.5 rounded-full text-xs ${statusColors[emp.status] || 'bg-gray-100'}`}>{emp.status === 'active' ? 'Aktif' : emp.status}</span>
                         </div>
                         <p className="text-xs text-gray-500">{emp.role} • {emp.ustas?.specialties?.slice(0, 2).join(', ')}</p>
-                        <div className="flex items-center gap-1 text-xs text-amber-500 mt-1">
+                        <div className="flex items-center gap-1 text-xs text-yellow-400 mt-1">
                           <Star size={10} fill="currentColor" /> {emp.ustas?.rating} • {emp.ustas?.completed_jobs} iş
                         </div>
                       </div>

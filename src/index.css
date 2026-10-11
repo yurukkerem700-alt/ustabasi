@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+/* Yörükhan Tech kimliği: mevcut amber/orange sınıfları marka paletine eşlenir */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+
+  --color-amber-50: #eef4ff;
+  --color-amber-100: #dbe7ff;
+  --color-amber-200: #bfd3ff;
+  --color-amber-300: #93b4ff;
+  --color-amber-400: #5f8cff;
+  --color-amber-500: #2f6bff;
+  --color-amber-600: #1f55e0;
+  --color-amber-700: #1a45b3;
+  --color-amber-800: #1b3b8c;
+  --color-amber-900: #16295f;
+  --color-amber-950: #0d1a3d;
+
+  --color-orange-50: #f5f1ff;
+  --color-orange-100: #ece5ff;
+  --color-orange-200: #d9ccff;
+  --color-orange-300: #bfa8ff;
+  --color-orange-400: #a78bfa;
+  --color-orange-500: #8b5cf6;
+  --color-orange-600: #7c3aed;
+  --color-orange-700: #6d28d9;
+  --color-orange-800: #5b21b6;
+  --color-orange-900: #3b1a7a;
+
+  --color-slate-700: #1b2744;
+  --color-slate-800: #111b30;
+  --color-slate-900: #0b1220;
+  --color-slate-950: #060a14;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 html {
@@ -10,6 +44,11 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+h1, h2, h3 {
+  font-family: 'Sora', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
@@ -18,7 +57,7 @@ body {
 }
 
 .dark .glass {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(6, 10, 20, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -31,13 +70,13 @@ body {
 }
 
 .dark .glass-card {
-  background: rgba(30, 41, 59, 0.6);
+  background: rgba(17, 27, 48, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  background: linear-gradient(135deg, #19d3ff 0%, #2f6bff 50%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
