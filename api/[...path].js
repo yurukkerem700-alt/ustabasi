@@ -613,7 +613,11 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   try {
-    const pathSegments = req.query.path || [];
+    // Yol parametresi bazı yönlendirme senaryolarında boş gelebilir; URL'den de çöz
+    let pathSegments = req.query.path || [];
+    if (!pathSegments.length) {
+      pathSegments = (req.url || '').split('?')[0].replace(/^\/api\/?/, '').split('/').filter(Boolean);
+    }
     const route = Array.isArray(pathSegments) ? pathSegments.join('/') : pathSegments;
     const handlerFn = ROUTES[route];
 
