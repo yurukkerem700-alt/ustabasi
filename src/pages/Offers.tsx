@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Star, Clock, DollarSign, CheckCircle, MessageCircle, TrendingUp } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function Offers() {
   const { jobId } = useParams();
@@ -20,8 +21,7 @@ export default function Offers() {
 
   const fetchJobs = async () => {
     try {
-      const res = await fetch('/api/jobs');
-      const data = await res.json();
+      const data = await fetchList('/api/jobs');
       setJobs(data);
       if (!selectedJob && data.length > 0) setSelectedJob(data[0].id);
     } catch (err) {
@@ -32,9 +32,7 @@ export default function Offers() {
   const fetchOffers = async (jid: string) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/offers?job_id=${jid}`);
-      const data = await res.json();
-      setOffers(data);
+      setOffers(await fetchList(`/api/offers?job_id=${jid}`));
     } catch (err) {
       console.error(err);
     } finally {

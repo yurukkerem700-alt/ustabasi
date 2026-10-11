@@ -5,6 +5,7 @@ import {
   Star, MapPin, Clock, Shield, Award, Phone, Mail,
   CheckCircle, MessageCircle, Calendar, TrendingUp
 } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function UstaDetail() {
   const { id } = useParams();
@@ -19,13 +20,13 @@ export default function UstaDetail() {
   const fetchUsta = async () => {
     setLoading(true);
     try {
-      const [ustaRes, reviewsRes] = await Promise.all([
+      const [ustaRes, reviewList] = await Promise.all([
         fetch(`/api/ustas?id=${id}`),
-        fetch(`/api/reviews?usta_id=${id}`)
+        fetchList(`/api/reviews?usta_id=${id}`)
       ]);
-      const ustas = await ustaRes.json();
-      setUsta(Array.isArray(ustas) ? ustas[0] : null);
-      setReviews(await reviewsRes.json());
+      const ustaData = ustaRes.ok ? await ustaRes.json() : null;
+      setUsta(Array.isArray(ustaData) ? ustaData[0] : ustaData && !ustaData.error ? ustaData : null);
+      setReviews(reviewList);
     } catch (err) {
       console.error(err);
     } finally {

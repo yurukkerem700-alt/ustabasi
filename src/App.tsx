@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -7,7 +7,6 @@ import UstaDetail from './pages/UstaDetail';
 import JobRequest from './pages/JobRequest';
 import Offers from './pages/Offers';
 import Chat from './pages/Chat';
-import Ustagram from './pages/Ustagram';
 import Gallery from './pages/Gallery';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
@@ -38,7 +37,7 @@ function App() {
           <Route path="/is-talebi" element={<JobRequest />} />
           <Route path="/teklifler/:jobId?" element={<Offers />} />
           <Route path="/mesajlar/:jobId?" element={<Chat />} />
-          <Route path="/ustagram" element={<Ustagram />} />
+          <Route path="/ustagram" element={<Navigate to="/" replace />} />
           <Route path="/galeri" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, MapPin, Star, Filter, SlidersHorizontal, Clock, Shield, Award } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function Ustalar() {
   const [searchParams] = useSearchParams();
@@ -22,11 +23,7 @@ export default function Ustalar() {
       const params = new URLSearchParams();
       if (categoryFilter) params.set('category', categoryFilter);
       if (statusFilter) params.set('status', statusFilter);
-      const res = await fetch(`/api/ustas?${params.toString()}`);
-      const data = await res.json();
-      setUstas(data);
-    } catch (err) {
-      console.error(err);
+      setUstas(await fetchList(`/api/ustas?${params.toString()}`));
     } finally {
       setLoading(false);
     }

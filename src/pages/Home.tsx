@@ -7,6 +7,7 @@ import {
   Sofa, Home as HomeIcon, TreePine, Grid3X3, LayoutGrid, Heater,
   HardHat, Hammer, Wrench, Users, CheckCircle, Award
 } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 const stats = [
   { label: 'Hizmet Kategorisi', value: '15+', icon: Users },
@@ -46,10 +47,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch('/api/ustas?status=active')
-      .then(r => r.json())
-      .then(data => setFeatured(data.slice(0, 6)))
-      .catch(() => setFeatured([]));
+    fetchList('/api/ustas?status=active').then(data => setFeatured(data.slice(0, 6)));
   }, []);
 
   const filteredCategories = categories.filter(c =>

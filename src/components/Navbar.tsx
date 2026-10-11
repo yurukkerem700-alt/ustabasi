@@ -17,7 +17,6 @@ export default function Navbar() {
     { to: '/harita', label: 'Harita' },
     { to: '/acil-durum', label: 'Acil Durum', highlight: true },
     { to: '/sohbet', label: 'Sohbet' },
-    { to: '/ustagram', label: 'Ustagram' },
     { to: '/blog', label: 'Blog' },
     { to: '/iletisim', label: 'İletişim' },
   ];

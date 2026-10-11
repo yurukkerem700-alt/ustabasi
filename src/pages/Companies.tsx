@@ -5,6 +5,7 @@ import {
   Search, Building2, MapPin, Users, Star, Shield, Phone, Mail,
   Globe, ChevronRight, Briefcase, TrendingUp, CheckCircle2
 } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function Companies() {
   const [companies, setCompanies] = useState<any[]>([]);
@@ -21,14 +22,14 @@ export default function Companies() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [compRes, empRes, jobRes] = await Promise.all([
-        fetch('/api/companies'),
-        fetch('/api/company-employees'),
-        fetch('/api/company-jobs')
+      const [comps, emps, jobs] = await Promise.all([
+        fetchList('/api/companies'),
+        fetchList('/api/company-employees'),
+        fetchList('/api/company-jobs')
       ]);
-      setCompanies(await compRes.json());
-      setEmployees(await empRes.json());
-      setCompanyJobs(await jobRes.json());
+      setCompanies(comps);
+      setEmployees(emps);
+      setCompanyJobs(jobs);
     } catch (err) {
       console.error(err);
     } finally {

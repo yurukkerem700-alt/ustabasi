@@ -19,7 +19,7 @@ const plans = [
     price: '299',
     period: 'aylık',
     description: 'Aktif çalışan ustalar için profesyonel paket.',
-    features: ['Sınırsız teklif hakkı', 'Öne çıkan profil', 'Güven rozetleri', 'Öncelikli destek', 'Ustagram erişimi', 'Detaylı istatistikler'],
+    features: ['Sınırsız teklif hakkı', 'Öne çıkan profil', 'Güven rozetleri', 'Öncelikli destek', 'Detaylı istatistikler'],
     cta: 'Profesyonel Ol',
     popular: true,
   },

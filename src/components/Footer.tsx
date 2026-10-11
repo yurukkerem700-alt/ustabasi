@@ -21,7 +21,6 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li><Link to="/ustalar" className="hover:text-amber-600 transition-colors">Ustalar</Link></li>
               <li><Link to="/is-talebi" className="hover:text-amber-600 transition-colors">İş Talebi Oluştur</Link></li>
-              <li><Link to="/ustagram" className="hover:text-amber-600 transition-colors">Ustagram</Link></li>
               <li><Link to="/blog" className="hover:text-amber-600 transition-colors">Blog</Link></li>
               <li><Link to="/abonelik" className="hover:text-amber-600 transition-colors">Abonelikler</Link></li>
             </ul>

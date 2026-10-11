@@ -10,6 +10,7 @@ import 'leaflet/dist/leaflet.css';
 
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import { fetchList } from '../lib/api';
 
 const defaultIcon = new Icon({ iconUrl: markerIcon, shadowUrl: markerShadow, iconSize: [25, 41], iconAnchor: [12, 41] });
 const companyIcon = new Icon({ iconUrl: markerIcon, shadowUrl: markerShadow, iconSize: [25, 41], iconAnchor: [12, 41], className: 'filter hue-rotate-90' });
@@ -42,14 +43,10 @@ export default function WorldMap() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [uRes, cRes, jRes] = await Promise.all([
-        fetch('/api/ustas'),
-        fetch('/api/companies'),
-        fetch('/api/company-jobs')
-      ]);
-      setUstas(await uRes.json());
-      setCompanies(await cRes.json());
-      setJobs(await jRes.json());
+      const [u, c, j] = await Promise.all([fetchList('/api/ustas'), fetchList('/api/companies'), fetchList('/api/company-jobs')]);
+      setUstas(u);
+      setCompanies(c);
+      setJobs(j);
     } catch (err) {
       console.error(err);
     } finally {

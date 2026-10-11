@@ -172,109 +172,7 @@ async function handleMessages(req, res) {
   } catch (e) { return err(res, e.message); }
 }
 
-// ===== USTAGRAM: POSTS + LIKES + COMMENTS + SAVES + FOLLOWERS =====
-async function handleUstagramPosts(req, res) {
-  try {
-    if (req.method === 'GET') {
-      const { category, search, sort, usta_id, post_type, limit = '20', offset = '0' } = req.query;
-      let query = supabase.from('usta_posts').select('*, ustas(name, avatar, rating, completed_jobs, location, specialties, identity_verified, phone_verified, certified, premium)');
-      if (category) query = query.eq('category', category);
-      if (usta_id) query = query.eq('usta_id', usta_id);
-      if (post_type) query = query.eq('post_type', post_type);
-      if (search) query = query.ilike('title', `%${search}%`);
-      if (sort === 'popular') query = query.order('likes_count', { ascending: false });
-      else query = query.order('created_at', { ascending: false });
-      query = query.range(parseInt(offset), parseInt(offset) + parseInt(limit) - 1);
-      const { data, error } = await query;
-      if (error) throw error;
-      return ok(res, data);
-    }
-    if (req.method === 'POST') {
-      const { data, error } = await supabase.from('usta_posts').insert(req.body).select().single();
-      if (error) throw error;
-      return ok(res, data, 201);
-    }
-    return err(res, 'Method not allowed', 405);
-  } catch (e) { return err(res, e.message); }
-}
-
-async function handleUstagramLikes(req, res) {
-  try {
-    if (req.method === 'GET') {
-      const { post_id, user_id } = req.query;
-      let query = supabase.from('post_likes').select('*');
-      if (post_id) query = query.eq('post_id', post_id);
-      if (user_id) query = query.eq('user_id', user_id);
-      const { data, error } = await query;
-      if (error) throw error;
-      return ok(res, data);
-    }
-    if (req.method === 'POST') {
-      const { post_id, user_id } = req.body;
-      const { data, error } = await supabase.from('post_likes').insert({ post_id, user_id }).select().single();
-      if (error) throw error;
-      const { data: post } = await supabase.from('usta_posts').select('likes_count').eq('id', post_id).single();
-      await supabase.from('usta_posts').update({ likes_count: (post?.likes_count || 0) + 1 }).eq('id', post_id);
-      return ok(res, data, 201);
-    }
-    if (req.method === 'DELETE') {
-      const { post_id, user_id } = req.body;
-      await supabase.from('post_likes').delete().eq('post_id', post_id).eq('user_id', user_id);
-      const { data: post } = await supabase.from('usta_posts').select('likes_count').eq('id', post_id).single();
-      if (post && post.likes_count > 0) await supabase.from('usta_posts').update({ likes_count: post.likes_count - 1 }).eq('id', post_id);
-      return ok(res, { ok: true });
-    }
-    return err(res, 'Method not allowed', 405);
-  } catch (e) { return err(res, e.message); }
-}
-
-async function handleUstagramComments(req, res) {
-  try {
-    if (req.method === 'GET') {
-      const { post_id } = req.query;
-      let query = supabase.from('post_comments').select('*').order('created_at', { ascending: true });
-      if (post_id) query = query.eq('post_id', post_id);
-      const { data, error } = await query;
-      if (error) throw error;
-      return ok(res, data);
-    }
-    if (req.method === 'POST') {
-      const { post_id, user_id, user_name, content } = req.body;
-      const { data, error } = await supabase.from('post_comments').insert({ post_id, user_id, user_name, content }).select().single();
-      if (error) throw error;
-      const { data: post } = await supabase.from('usta_posts').select('comments_count').eq('id', post_id).single();
-      await supabase.from('usta_posts').update({ comments_count: (post?.comments_count || 0) + 1 }).eq('id', post_id);
-      return ok(res, data, 201);
-    }
-    return err(res, 'Method not allowed', 405);
-  } catch (e) { return err(res, e.message); }
-}
-
-async function handleUstagramSaves(req, res) {
-  try {
-    if (req.method === 'GET') {
-      const { user_id } = req.query;
-      let query = supabase.from('saved_posts').select('*, usta_posts(*)');
-      if (user_id) query = query.eq('user_id', user_id);
-      const { data, error } = await query;
-      if (error) throw error;
-      return ok(res, data);
-    }
-    if (req.method === 'POST') {
-      const { post_id, user_id } = req.body;
-      const { data, error } = await supabase.from('saved_posts').insert({ post_id, user_id }).select().single();
-      if (error) throw error;
-      return ok(res, data, 201);
-    }
-    if (req.method === 'DELETE') {
-      const { post_id, user_id } = req.body;
-      await supabase.from('saved_posts').delete().eq('post_id', post_id).eq('user_id', user_id);
-      return ok(res, { ok: true });
-    }
-    return err(res, 'Method not allowed', 405);
-  } catch (e) { return err(res, e.message); }
-}
-
+// ===== FOLLOWERS =====
 async function handleFollowers(req, res) {
   try {
     if (req.method === 'GET') {
@@ -588,11 +486,6 @@ const ROUTES = {
   'jobs': handleJobs,
   'offers': handleOffers,
   'messages': handleMessages,
-  'ustagram-posts': handleUstagramPosts,
-  'ustagram-likes': handleUstagramLikes,
-  'ustagram-comments': handleUstagramComments,
-  'ustagram-saves': handleUstagramSaves,
-  'ustagram-followers': handleFollowers,
   'followers': handleFollowers,
   'companies': handleCompanies,
   'company-employees': handleCompanyEmployees,

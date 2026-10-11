@@ -2,16 +2,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, ArrowRight, Tag } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function Blog() {
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/blog')
-      .then(r => r.json())
-      .then(data => { setPosts(data); setLoading(false); })
-      .catch(() => setLoading(false));
+    fetchList('/api/blog').then(data => { setPosts(data); setLoading(false); });
   }, []);
 
   return (

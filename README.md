@@ -28,15 +28,6 @@
 - Güvenilirlik rozetleri (Kimlik, Telefon, Adres, Sertifika)
 - Konum bazlı mesafe hesaplama
 
-### 📱 USTAGRAM - Sosyal Platform
-- Instagram benzeri akış (Story Bar, post kartları)
-- Öncesi/Sonrası karşılaştırma (sürüklenebilir slider)
-- Beğenme, yorum, kaydetme, paylaşma, takip etme
-- Proje galerisi ve detay modalı
-- Arama ve gelişmiş filtreleme
-- Şirket reklam paneli
-- Admin moderasyon paneli
-
 ### 🏢 Firma Modülü
 - Firma kaydı ve yönetimi
 - Çalışan usta listesi ve rolleri
@@ -130,7 +121,6 @@ ustabasi/
 ├── api/                    # Vercel Serverless API (25+ endpoint)
 │   ├── db-client.js          # Supabase client
 │   ├── ustas.js              # Usta CRUD
-│   ├── usta_posts.js         # Ustagram gönderileri
 │   ├── companies.js          # Firma yönetimi
 │   ├── emergency.js          # Acil durum
 │   ├── tracking.js           # Canlı konum takibi
@@ -162,9 +152,6 @@ ustabasi/
 | `messages` | Mesajlaşma |
 | `reviews` | Değerlendirmeler |
 | `blog_posts` | Blog yazıları |
-| `usta_posts` | Ustagram gönderileri |
-| `post_likes` | Beğeniler |
-| `post_comments` | Yorumlar |
 | `saved_posts` | Kaydedilenler |
 | `followers` | Takip sistemi |
 | `reports` | İçerik moderasyonu |
@@ -182,9 +169,9 @@ ustabasi/
 
 ## 📱 Ekran Görüntüleri
 
-| Ana Sayfa | Ustagram | Harita |
-|-----------|----------|--------|
-| ![Home](public/site_kapak.png) | Ustagram Akışı | Canlı Harita |
+| Ana Sayfa | Harita |
+|-----------|--------|
+| ![Home](public/site_kapak.png) | Canlı Harita |
 
 ---
 

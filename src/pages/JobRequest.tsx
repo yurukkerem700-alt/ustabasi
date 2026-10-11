@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Send, Upload, MapPin, DollarSign, FileText, Tag } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function JobRequest() {
   const navigate = useNavigate();
@@ -18,10 +19,7 @@ export default function JobRequest() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    fetch('/api/categories')
-      .then(r => r.json())
-      .then(data => setCategories(data))
-      .catch(console.error);
+    fetchList('/api/categories').then(setCategories);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

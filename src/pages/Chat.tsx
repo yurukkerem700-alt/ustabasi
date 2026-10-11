@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Send, Paperclip, Phone, MoreVertical, Check, CheckCheck } from 'lucide-react';
+import { fetchList } from '../lib/api';
 
 export default function Chat() {
   const { jobId } = useParams();
@@ -22,9 +23,7 @@ export default function Chat() {
 
   const fetchMessages = async () => {
     try {
-      const res = await fetch(`/api/messages${jobId ? `?job_id=${jobId}` : ''}`);
-      const data = await res.json();
-      setMessages(data);
+      setMessages(await fetchList(`/api/messages${jobId ? `?job_id=${jobId}` : ''}`));
     } catch (err) {
       console.error(err);
     } finally {
