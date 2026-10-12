@@ -8,6 +8,8 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Mesaj örnek API'ye kaydedilir; gerçek backend'de uç yoksa sessizce yok sayılır.
+    fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) }).catch(() => {});
     setSent(true);
     setTimeout(() => setSent(false), 3000);
     setForm({ name: '', email: '', subject: '', message: '' });

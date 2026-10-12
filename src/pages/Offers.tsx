@@ -24,6 +24,7 @@ export default function Offers() {
       const data = await fetchList('/api/jobs');
       setJobs(data);
       if (!selectedJob && data.length > 0) setSelectedJob(data[0].id);
+      else if (data.length === 0) setLoading(false);
     } catch (err) {
       console.error(err);
     }
@@ -53,7 +54,7 @@ export default function Offers() {
     }
   };
 
-  const selectedJobData = jobs.find(j => j.id === selectedJob);
+  const selectedJobData = jobs.find(j => String(j.id) === String(selectedJob));
 
   return (
     <div className="pt-24 pb-20">
@@ -65,11 +66,16 @@ export default function Offers() {
           {/* Jobs List */}
           <div className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">İş Taleplerim</h2>
+            {jobs.length === 0 && (
+              <div className="glass-card rounded-xl p-4 text-sm text-gray-500">
+                Henüz iş talebiniz yok. <Link to="/is-talebi" className="text-amber-600 font-medium hover:underline">İş talebi oluşturun →</Link>
+              </div>
+            )}
             {jobs.map(job => (
               <button
                 key={job.id}
                 onClick={() => setSelectedJob(job.id)}
-                className={`w-full text-left glass-card rounded-xl p-4 transition-all ${selectedJob === job.id ? 'ring-2 ring-amber-500' : 'hover:shadow-md'}`}
+                className={`w-full text-left glass-card rounded-xl p-4 transition-all ${String(selectedJob) === String(job.id) ? 'ring-2 ring-amber-500' : 'hover:shadow-md'}`}
               >
                 <p className="font-medium text-sm truncate">{job.title}</p>
                 <p className="text-xs text-gray-500 mt-1">{job.location} • {new Date(job.created_at).toLocaleDateString('tr-TR')}</p>
@@ -128,10 +134,10 @@ export default function Offers() {
                         <div className="flex gap-2 mt-4">
                           <button
                             onClick={() => acceptOffer(offer.id)}
-                            disabled={offer.status === 'accepted'}
+                            disabled={offer.status === 'accepted' || offer.status === 'rejected'}
                             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-medium hover:shadow-lg transition-all disabled:opacity-50"
                           >
-                            <CheckCircle size={14} /> {offer.status === 'accepted' ? 'Kabul Edildi' : 'Kabul Et'}
+                            <CheckCircle size={14} /> {offer.status === 'accepted' ? 'Kabul Edildi' : offer.status === 'rejected' ? 'Reddedildi' : 'Kabul Et'}
                           </button>
                           <Link
                             to={`/mesajlar/${selectedJob}`}

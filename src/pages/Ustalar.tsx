@@ -12,10 +12,19 @@ export default function Ustalar() {
   const [categoryFilter, setCategoryFilter] = useState(searchParams.get('category') || '');
   const [statusFilter, setStatusFilter] = useState('');
   const [sortBy, setSortBy] = useState('rating');
+  const [userPos, setUserPos] = useState<[number, number] | null>(null);
+
+  // "Mesafeye göre" seçilince konum alınır; izin verilmezse İstanbul merkez varsayılır.
+  useEffect(() => {
+    if (sortBy !== 'distance' || userPos) return;
+    const fallback = () => setUserPos([41.0082, 28.9784]);
+    if (!navigator.geolocation) return fallback();
+    navigator.geolocation.getCurrentPosition(p => setUserPos([p.coords.latitude, p.coords.longitude]), fallback, { timeout: 2500 });
+  }, [sortBy, userPos]);
 
   useEffect(() => {
     fetchUstas();
-  }, [categoryFilter, statusFilter]);
+  }, [categoryFilter, statusFilter, userPos]);
 
   const fetchUstas = async () => {
     setLoading(true);
@@ -23,6 +32,7 @@ export default function Ustalar() {
       const params = new URLSearchParams();
       if (categoryFilter) params.set('category', categoryFilter);
       if (statusFilter) params.set('status', statusFilter);
+      if (userPos) { params.set('lat', String(userPos[0])); params.set('lng', String(userPos[1])); }
       setUstas(await fetchList(`/api/ustas?${params.toString()}`));
     } finally {
       setLoading(false);
@@ -38,7 +48,7 @@ export default function Ustalar() {
       return 0;
     });
 
-  const categories = ['Elektrik', 'Su Tesisatı', 'Boya', 'Temizlik', 'Nakliyat', 'Klima', 'Mobilya', 'Çatı', 'İnşaat', 'Bahçe'];
+  const categories = ['Elektrik', 'Su Tesisatı', 'Boya', 'Temizlik', 'Nakliyat', 'Klima', 'Mobilya', 'Çatı', 'İnşaat', 'Bahçe', 'Cam Balkon', 'Fayans', 'Parke', 'Alçıpan', 'Kombi'];
 
   return (
     <div className="pt-24 pb-20">

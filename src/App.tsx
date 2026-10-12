@@ -12,7 +12,6 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Auth from './pages/Auth';
 import Subscriptions from './pages/Subscriptions';
 import Companies from './pages/Companies';
 import WorldMap from './pages/WorldMap';
@@ -22,6 +21,7 @@ import ChatRooms from './pages/ChatRooms';
 import ChatRoom from './pages/ChatRoom';
 import Tracking from './pages/Tracking';
 import KVKK from './pages/KVKK';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/hakkimizda" element={<About />} />
           <Route path="/iletisim" element={<Contact />} />
-          <Route path="/giris" element={<Auth />} />
+          <Route path="/giris" element={<Navigate to="/" replace />} />
           <Route path="/abonelik" element={<Subscriptions />} />
           <Route path="/bildirimler" element={<Notifications />} />
           <Route path="/acil-durum" element={<Emergency />} />
@@ -51,6 +51,7 @@ function App() {
           <Route path="/sohbet/:roomId" element={<ChatRoom />} />
           <Route path="/takip" element={<Tracking />} />
           <Route path="/kvkk" element={<KVKK />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

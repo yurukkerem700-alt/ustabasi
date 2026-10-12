@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, RotateCcw } from 'lucide-react';
+import { resetDemoData } from '../lib/mock/server';
 
 export default function Footer() {
   return (
@@ -22,6 +23,10 @@ export default function Footer() {
               <li><Link to="/ustalar" className="hover:text-amber-600 transition-colors">Ustalar</Link></li>
               <li><Link to="/is-talebi" className="hover:text-amber-600 transition-colors">İş Talebi Oluştur</Link></li>
               <li><Link to="/blog" className="hover:text-amber-600 transition-colors">Blog</Link></li>
+              <li><Link to="/teklifler" className="hover:text-amber-600 transition-colors">Tekliflerim</Link></li>
+              <li><Link to="/galeri" className="hover:text-amber-600 transition-colors">Galeri</Link></li>
+              <li><Link to="/takip" className="hover:text-amber-600 transition-colors">Ustam Nerede?</Link></li>
+              <li><Link to="/hakkimizda" className="hover:text-amber-600 transition-colors">Hakkımızda</Link></li>
               <li><Link to="/abonelik" className="hover:text-amber-600 transition-colors">Abonelikler</Link></li>
             </ul>
           </div>
@@ -46,7 +51,19 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-500">
-          <p>© 2026 Ustabaşı · Bir YÖRÜKHAN TECH ürünüdür. Tüm hakları saklıdır.</p>
+          <div className="text-center md:text-left">
+            <p>© 2026 Ustabaşı · Bir YÖRÜKHAN TECH ürünüdür. Tüm hakları saklıdır.</p>
+            <p className="mt-1 text-xs">
+              Demo sürümü: örnek verilerle çalışır, bilgileriniz yalnızca bu tarayıcıda saklanır.{' '}
+              <button
+                type="button"
+                onClick={() => { resetDemoData(); window.location.reload(); }}
+                className="inline-flex items-center gap-1 text-amber-600 hover:underline"
+              >
+                <RotateCcw size={11} /> Örnek verileri sıfırla
+              </button>
+            </p>
+          </div>
           <div className="flex gap-6">
             <Link to="/kvkk" className="hover:text-amber-600 transition-colors">Gizlilik Politikası</Link>
             <Link to="/kvkk" className="hover:text-amber-600 transition-colors">Kullanım Koşulları</Link>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Zap, Crown, Building2, CreditCard } from 'lucide-react';
+import { Check, Zap, Crown, Building2, CreditCard, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const plans = [
   {
@@ -37,6 +38,17 @@ const plans = [
 
 export default function Subscriptions() {
   const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly');
+  const [selected, setSelected] = useState<string>(() => {
+    try { return localStorage.getItem('ub_plan') || ''; } catch { return ''; }
+  });
+  const [justSelected, setJustSelected] = useState(false);
+
+  const choosePlan = (name: string) => {
+    setSelected(name);
+    setJustSelected(true);
+    try { localStorage.setItem('ub_plan', name); } catch { /* özel mod */ }
+    setTimeout(() => setJustSelected(false), 4000);
+  };
 
   return (
     <div className="pt-24 pb-20">
@@ -96,16 +108,23 @@ export default function Subscriptions() {
                   </li>
                 ))}
               </ul>
-              <button className={`w-full py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+              <button onClick={() => choosePlan(plan.name)} disabled={selected === plan.name} className={`w-full py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-default ${
                 plan.popular
                   ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-lg shadow-amber-500/25 hover:shadow-xl'
                   : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-white/10 hover:border-amber-500'
               }`}>
-                <CreditCard size={16} /> {plan.cta}
+                {selected === plan.name ? <><CheckCircle2 size={16} /> Seçili Paket</> : <><CreditCard size={16} /> {plan.cta}</>}
               </button>
             </motion.div>
           ))}
         </div>
+
+        {justSelected && (
+          <div role="status" className="mt-8 flex items-center justify-center gap-2 rounded-2xl bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 p-4 text-sm font-medium">
+            <CheckCircle2 size={18} /> {selected} paketi seçildi. 14 günlük deneme başladı; demo sürümünde ödeme alınmaz.
+            <Link to="/is-talebi" className="underline ml-1">İş talebi oluştur</Link>
+          </div>
+        )}
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-12 glass-card rounded-2xl p-6 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">

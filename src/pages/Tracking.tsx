@@ -89,6 +89,17 @@ export default function Tracking() {
           </MapContainer>
         )}
 
+        {!loading && !t && (
+          <div className="absolute bottom-4 left-4 right-4 z-[400]">
+            <div className="glass-card rounded-2xl p-4 max-w-md mx-auto text-center text-sm">
+              <p className="text-gray-600 dark:text-gray-400 mb-3">Şu an takip edilen bir usta yok.</p>
+              <Link to="/acil-durum" className="inline-block px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-white font-medium">
+                Acil durum talebi oluştur
+              </Link>
+            </div>
+          </div>
+        )}
+
         {/* Info Card */}
         {t && (
           <motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }}

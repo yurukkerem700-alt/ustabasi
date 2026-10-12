@@ -12,6 +12,34 @@ export default function UstaDetail() {
   const [usta, setUsta] = useState<any>(null);
   const [reviews, setReviews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [rvRating, setRvRating] = useState(5);
+  const [rvComment, setRvComment] = useState('');
+  const [rvSending, setRvSending] = useState(false);
+  const [rvDone, setRvDone] = useState(false);
+
+  const submitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (rvComment.trim().length < 5) return;
+    setRvSending(true);
+    try {
+      const res = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ usta_id: usta.id, user_id: 'demo-user', author_name: 'Misafir Kullanıcı', rating: rvRating, comment: rvComment.trim() })
+      });
+      if (res.ok) {
+        setRvComment('');
+        setRvRating(5);
+        setRvDone(true);
+        setTimeout(() => setRvDone(false), 3000);
+        const [fresh, list] = await Promise.all([fetch(`/api/ustas?id=${id}`).then(r => (r.ok ? r.json() : null)), fetchList(`/api/reviews?usta_id=${id}`)]);
+        if (fresh && !fresh.error) setUsta(fresh);
+        setReviews(list);
+      }
+    } finally {
+      setRvSending(false);
+    }
+  };
 
   useEffect(() => {
     fetchUsta();
@@ -128,6 +156,31 @@ export default function UstaDetail() {
             {/* Reviews */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass-card rounded-2xl p-6">
               <h2 className="text-xl font-bold mb-4">Değerlendirmeler ({reviews.length})</h2>
+              <form onSubmit={submitReview} className="mb-6 p-4 rounded-xl border border-gray-200 dark:border-white/10 space-y-3">
+                <p className="text-sm font-semibold">Siz de değerlendirin</p>
+                <div className="flex items-center gap-1" role="radiogroup" aria-label="Puan">
+                  {[1, 2, 3, 4, 5].map(n => (
+                    <button key={n} type="button" role="radio" aria-checked={rvRating === n} aria-label={`${n} yıldız`} onClick={() => setRvRating(n)} className="p-0.5">
+                      <Star size={22} className={n <= rvRating ? 'text-amber-500' : 'text-gray-300'} fill={n <= rvRating ? 'currentColor' : 'none'} />
+                    </button>
+                  ))}
+                </div>
+                <textarea
+                  value={rvComment}
+                  onChange={e => setRvComment(e.target.value)}
+                  rows={3}
+                  required
+                  minLength={5}
+                  placeholder="Deneyiminizi paylaşın..."
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-amber-500 outline-none resize-none text-sm"
+                />
+                <div className="flex items-center gap-3">
+                  <button type="submit" disabled={rvSending || rvComment.trim().length < 5} className="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white text-sm font-medium hover:shadow-lg transition-all disabled:opacity-50">
+                    {rvSending ? 'Gönderiliyor...' : 'Değerlendirmeyi Gönder'}
+                  </button>
+                  {rvDone && <span role="status" className="text-sm text-green-600">Teşekkürler, değerlendirmeniz eklendi!</span>}
+                </div>
+              </form>
               <div className="space-y-4">
                 {reviews.length === 0 && <p className="text-gray-500 text-sm">Henüz değerlendirme yok.</p>}
                 {reviews.map((review: any) => (
@@ -141,6 +194,7 @@ export default function UstaDetail() {
                       <span className="text-sm text-gray-500">{new Date(review.created_at).toLocaleDateString('tr-TR')}</span>
                     </div>
                     <p className="text-gray-700 dark:text-gray-300 text-sm">{review.comment}</p>
+                    {review.author_name && <p className="text-xs text-gray-400 mt-1">— {review.author_name}</p>}
                   </div>
                 ))}
               </div>

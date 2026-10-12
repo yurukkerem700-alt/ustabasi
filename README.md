@@ -60,10 +60,11 @@
 - SEO uyumlu blog yazıları
 - Kategori ve etiket sistemi
 
-### 🔐 Auth & Güvenlik
-- E-posta/şifre girişi
-- Google OAuth desteği
-- 3 hesap türü: Müşteri, Usta, Firma
+### 🧪 Demo Modu (varsayılan)
+- Giriş/kayıt yoktur; tüm sayfalar örnek verilerle çalışır
+- `/api/*` istekleri tarayıcıda yanıtlanır (`src/lib/mock/`), veriler `localStorage`'da saklanır
+- İş talebi → otomatik teklifler, mesajlaşma, acil durum atama ve canlı takip simüle edilir
+- Altbilgideki "Örnek verileri sıfırla" bağlantısı tüm veriyi baştan oluşturur
 
 ### 🌟 Diğer Özellikler
 - Dark/Light tema geçişi
@@ -99,17 +100,15 @@ npm run build
 
 ## 🔧 Ortam Değişkenleri
 
-`.env` dosyasına ekle:
+Demo modunda hiçbir ortam değişkeni gerekmez. Gerçek backend'e (`api/` + Supabase) geçmek için:
 
 ```env
-# Supabase
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+# Örnek API'yi kapatır, istekler api/ klasöründeki sunucu işlevlerine gider
+VITE_USE_REAL_API=1
 
-# Google OAuth (isteğe bağlı)
-VITE_GOOGLE_CLIENT_ID=your-google-client-id
-VITE_GOOGLE_AUTH_PROXY=https://your-auth-proxy.com
+# Sunucu işlevleri için (Vercel → Settings → Environment Variables)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
 ---
@@ -128,8 +127,8 @@ ustabasi/
 ├── src/
 │   ├── pages/                # 20+ sayfa
 │   ├── components/           # Bileşenler
-│   ├── contexts/             # Auth & Theme
-│   ├── lib/                  # Supabase client
+│   ├── contexts/             # Tema
+│   ├── lib/                  # fetchList + mock/ (örnek API ve veri)
 │   ├── App.tsx               # Router
 │   └── main.tsx              # Giriş noktası
 ├── public/                 # Statik dosyalar

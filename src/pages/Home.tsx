@@ -84,7 +84,7 @@ export default function Home() {
                   Usta Bul
                 </Link>
                 <Link
-                  to="/giris"
+                  to="/abonelik"
                   className="px-8 py-4 rounded-xl bg-white dark:bg-slate-800 text-gray-900 dark:text-white font-semibold border border-gray-200 dark:border-white/10 shadow-lg hover:shadow-xl hover:scale-105 transition-all"
                 >
                   Usta Ol
@@ -294,7 +294,7 @@ export default function Home() {
             <div className="relative">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">Hemen İşine Başla</h2>
               <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto mb-8">
-                Ücretsiz üye ol, iş talebini oluştur ve dakikalar içinde teklifler almaya başla.
+                Hesap açmana gerek yok: iş talebini oluştur ve dakikalar içinde teklifler almaya başla.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/is-talebi" className="px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold shadow-lg shadow-amber-500/25 hover:shadow-xl hover:scale-105 transition-all">

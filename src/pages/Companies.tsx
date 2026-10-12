@@ -6,6 +6,7 @@ import {
   Globe, ChevronRight, Briefcase, TrendingUp, CheckCircle2
 } from 'lucide-react';
 import { fetchList } from '../lib/api';
+import CompanyAdPanel from '../components/CompanyAdPanel';
 
 export default function Companies() {
   const [companies, setCompanies] = useState<any[]>([]);
@@ -54,9 +55,12 @@ export default function Companies() {
   return (
     <div className="pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2">Firmalar</h1>
-          <p className="text-gray-600 dark:text-gray-400">Güvenilir firmaları keşfet, çalışan ustaları ve işlerini görüntüle.</p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-2">Firmalar</h1>
+            <p className="text-gray-600 dark:text-gray-400">Güvenilir firmaları keşfet, çalışan ustaları ve işlerini görüntüle.</p>
+          </div>
+          <CompanyAdPanel />
         </div>
 
         <div className="glass-card rounded-2xl p-4 mb-8">

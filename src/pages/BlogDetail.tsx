@@ -10,8 +10,8 @@ export default function BlogDetail() {
 
   useEffect(() => {
     fetch(`/api/blog?slug=${slug}`)
-      .then(r => r.json())
-      .then(data => { setPost(data); setLoading(false); })
+      .then(r => (r.ok ? r.json() : null))
+      .then(data => { setPost(data && typeof data.content === 'string' ? data : null); setLoading(false); })
       .catch(() => setLoading(false));
   }, [slug]);
 
